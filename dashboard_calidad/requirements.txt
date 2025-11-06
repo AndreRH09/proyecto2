@@ -1,0 +1,7 @@
+# requirements.txt
+lxml==4.9.3
+pandas==2.2.2
+matplotlib==3.8.2
+seaborn==0.13.0
+tkinter  # Incluido en Python estándar
+pillow==10.1.0  # Para íconos e imágenes

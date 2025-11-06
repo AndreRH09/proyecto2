@@ -1,0 +1,5 @@
+pages\InvoiceGeneratorPage.class
+pages\LoginPage.class
+utils\FileUtils.class
+pages\InvoicePreviewPage.class
+pages\SignupPage.class

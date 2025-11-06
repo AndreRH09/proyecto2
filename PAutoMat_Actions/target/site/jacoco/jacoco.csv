@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+pdf-testing,pages,SignupPage,0,131,1,1,0,21,1,2,0,2
+pdf-testing,pages,InvoicePreviewPage,121,0,8,0,25,0,6,0,2,0
+pdf-testing,pages,InvoiceGeneratorPage,278,142,0,0,46,34,20,3,20,3
+pdf-testing,pages,LoginPage,59,0,0,0,11,0,2,0,2,0
+pdf-testing,utils,FileUtils,33,44,7,5,5,9,8,2,2,2

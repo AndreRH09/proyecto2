@@ -1,0 +1,5 @@
+pages\LoginPageTests.class
+base\EyesManager.class
+PDFTests.class
+base\BaseTests.class
+utils\FileUtilsTests.class

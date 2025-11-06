@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InvoicePreviewPage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pdf-testing</a> &gt; <a href="index.source.html" class="el_package">pages</a> &gt; <span class="el_source">InvoicePreviewPage.java</span></div><h1>InvoicePreviewPage.java</h1><pre class="source lang-java linenums">package pages;
+
+import java.io.File;
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+
+public class InvoicePreviewPage {
+
+    private WebDriver driver;
+    private WebDriverWait wait;
+
+<span class="nc" id="L17">    private By pdfButton = By.xpath(&quot;//button[.//p[text()='PDF']]&quot;);</span>
+
+<span class="nc" id="L19">    public InvoicePreviewPage(WebDriver driver) {</span>
+<span class="nc" id="L20">        this.driver = driver;</span>
+
+<span class="nc" id="L22">        wait = new WebDriverWait(driver, Duration.ofSeconds(15));</span>
+<span class="nc" id="L23">        wait.until(ExpectedConditions.numberOfWindowsToBe(2));</span>
+
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        for(String window: driver.getWindowHandles()){</span>
+<span class="nc" id="L26">            driver.switchTo().window(window);</span>
+<span class="nc" id="L27">        }</span>
+
+<span class="nc" id="L29">        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(pdfButton));</span>
+<span class="nc" id="L30">    }</span>
+
+    public void clickPDFButton(String invoiceNumber){
+<span class="nc" id="L33">        driver.findElement(pdfButton).click();</span>
+
+        // Construir la ruta completa donde Chrome descarga los archivos
+<span class="nc" id="L36">        String downloadPath = System.getProperty(&quot;user.home&quot;) + &quot;/Downloads/&quot; + invoiceNumber + &quot;.pdf&quot;;</span>
+<span class="nc" id="L37">        File file = new File(downloadPath);</span>
+        
+        // Esperar hasta 30 segundos para que el archivo se descargue
+<span class="nc" id="L40">        int maxWaitTime = 30; // segundos</span>
+<span class="nc" id="L41">        int waitedTime = 0;</span>
+        
+<span class="nc bnc" id="L43" title="All 4 branches missed.">        while (!file.exists() &amp;&amp; waitedTime &lt; maxWaitTime) {</span>
+            try{
+<span class="nc" id="L45">                Thread.sleep(1000);</span>
+<span class="nc" id="L46">                waitedTime++;</span>
+<span class="nc" id="L47">            }catch(InterruptedException e){</span>
+<span class="nc" id="L48">                e.printStackTrace();</span>
+<span class="nc" id="L49">            }</span>
+        }
+        
+<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (!file.exists()) {</span>
+<span class="nc" id="L53">            throw new RuntimeException(&quot;El archivo PDF no se descargó después de &quot; + maxWaitTime + &quot; segundos. Ruta esperada: &quot; + downloadPath);</span>
+        }
+        
+<span class="nc" id="L56">        System.out.println(&quot;PDF descargado exitosamente en: &quot; + downloadPath);</span>
+<span class="nc" id="L57">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
